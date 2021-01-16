@@ -1,0 +1,51 @@
+@mixin re-tl ($top: 0px, $left: 0px) {
+  position: relative;
+  top: $top;
+  left: $left;
+}
+
+@mixin re-tr ($top: 0px, $right: 0px) {
+  position: relative;
+  top: $top;
+  right: $right;
+}
+
+@mixin re-bl ($bottom: 0px, $left: 0px) {
+  position: relative;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin re-br ($bottom: 0px, $right: 0px) {
+  position: relative;
+  bottom: $bottom;
+  right: $right;
+}
+
+@mixin ab-tl ($top: 0px, $left: 0px) {
+  position: absolute;
+  top: $top;
+  left: $left;
+}
+
+@mixin ab-tr ($top: 0px, $right: 0px) {
+  position: absolute;
+  top: $top;
+  right: $right;
+}
+
+@mixin ab-bl ($bottom: 0px, $left: 0px) {
+  position: absolute;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin ab-br ($bottom: 0px, $right: 0px) {
+  position: absolute;
+  bottom: $bottom;
+  right: $right;
+}
+
+@mixin fsz ($size: 14) {
+  font-size: $size / 10 + rem;
+}

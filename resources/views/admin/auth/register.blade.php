@@ -1,6 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+
 
 @section('content')
+
+
+
+<div class="oneColumnContent">
+    @include('admin.commons.error')
 
     {{ Form::open(['route' => 'signup.post']) }}
         <div class="">
@@ -23,8 +30,15 @@
             {{ Form::password('password_confirmation', ['class' => '']) }}
         </div>
 
-        {{ Form::submit('新規登録する', ['class' => '']) }}
+        <div class="btnEle btnEle--single">
+            {{ Form::submit('新規登録する', ['class' => '']) }}
+        </div>     
+        
     {{ Form::close() }}
+    
+</div>
+
 
 
 @endsection
+

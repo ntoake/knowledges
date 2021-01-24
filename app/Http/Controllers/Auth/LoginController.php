@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+/*logoutのオーバーライドのために追加 AuthenticatesUsersのやつ*/
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -26,7 +31,19 @@ class LoginController extends Controller
     {
         return view('admin.auth.login');
     }
-    
+    /*オーバーライド*/
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return $this->loggedOut($request) ?: redirect('/admin/');
+    }
+
+
     /**
      * Where to redirect users after login.
      *

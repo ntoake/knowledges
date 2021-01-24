@@ -6,12 +6,10 @@
 html {
     font-size: 62.5%;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
 }
 
 body {
-	@include fsz(12);
+	@include fsz(16);
 	line-height: 1.6;
 	font-family: 'Noto Serif JP', serif;
 	font-weight: 400;
@@ -56,7 +54,7 @@ input, textarea {
 a {
     color: $txtColor;
 	text-decoration: none;
-	transition: all 0.5s;
+	/*transition: all 0.5s;*/
 }
 
 a:hover {
@@ -75,16 +73,17 @@ a:hover {
 
 .l-header{
     padding: 1em;
-    background: #eee;
+    background: $gray;
 }
 
 .l-main {
     flex: 2;
+    margin: 4em 0;
 }
 
 .l-footer{
     padding: 1em;
-    background: #ddd;
+    background: $gray;
     text-align: center;
 }
 
@@ -110,8 +109,280 @@ a:hover {
             padding: 0.5em;
             border-radius: 6px;
             background: #fff;
-            @include fsz(16);
         }
     }
     
 }
+
+/*共通設定1カラム*/
+.oneColumnContent {
+    max-width: 80%;
+    margin: 0 auto;
+}
+/*共通設定1カラム*/
+
+
+.adminContents {
+    display: flex;
+    justify-content: space-between;
+    max-width: 80%;
+    margin: 0 auto;
+    
+    &__main {
+        flex-basis: 80%; 
+        padding: 2%;
+    }
+    
+    &__side {
+        flex-basis: 16%;
+        padding: 2%;
+        background: $subColor;
+        color: $white;
+     
+        a {
+            color: $white;     
+        }  
+    }
+}
+
+.adminSideNav {
+    font-weight: bold;
+    
+    &__item {
+        padding: 10% 0;
+        
+        & + & {
+            border-top: 1px solid $white;
+        }
+    }
+}
+
+.adminSideNavLower {
+    margin: 4% 0 0 4%;
+    
+    @include fsz(14);
+    font-weight: normal;
+}
+
+
+
+
+
+
+.sharepostList {
+    &__item {
+    
+        &:first-child {
+            border-top: 1px solid $txtColor;
+        }
+        a {
+            position: relative;
+            display: block;
+            padding: 1em 8% 1em 1em;
+            border-bottom: 1px solid $txtColor;
+            
+            &::after {
+                @include ab-tr(50%, 5%);
+                content: '';
+                display: block;
+                width: .5em;
+                height: .5em;
+                border-top: 1px solid $txtColor;
+                border-right: 1px solid $txtColor;
+                transform: translateY(-50%) rotate(45deg);
+                transition: right 0.5s;
+            }
+            
+            &:hover {
+                background: $accentColor;
+            }       
+            
+            &:hover::after {
+                @include ab-tr(50%, 3%);
+            }
+        }
+    }  
+    
+    &__date {
+        @include fsz(12);
+    }
+    
+    &__author {
+        display: inline-block;
+        margin-left: 2em;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: $subColor;
+        color: $white;
+        @include fsz(12);
+    }
+    
+    &__ttl {
+        margin: 0.5em 0;
+    }
+
+}
+
+.sharepostTag {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.5em 0;
+    
+    &__item {
+        margin: .5em 1em 0 0;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: $gray;
+        @include fsz(12);
+        
+    }
+}
+
+
+
+.sharepostUnit {
+    
+    &__status {
+        display: flex;
+        margin-bottom: 2em;    
+    }
+    
+    &__author {
+        display: inline-block;
+        margin-left: 2em;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: $subColor;
+        color: $white;
+    }
+    
+    &__ttl {
+        @include fsz(20);
+        padding-bottom: 0.2em;
+    }
+    
+    &__content {
+        padding: 2em 0;  
+        border-top: 1px solid $txtColor;
+        border-bottom: 1px solid $txtColor;    
+    }
+
+}
+
+
+.sharepostUnitTag {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin: 0.5em 0;
+    
+    &__item {
+        margin: .5em 1em 0 0;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: $gray;
+
+    }
+}
+
+
+.tagCheckList {
+    display: flex;
+    flex-wrap: wrap;
+    
+    &__item {
+        margin-right: 1em;
+    }
+}
+
+
+
+
+.btnEle {
+    display: flex;
+    justify-content: center;
+    margin-top: 4em;
+    
+
+    a {
+        display: inline-block;
+        min-width: 150px;
+        padding: 0.5em 1em;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px $black;
+        background: $accentColor;
+        color: $white;
+        text-align: center;
+        
+        & + a,
+        & + form {
+            margin-left: 2em;
+        }
+        
+        &:hover {
+            text-decoration: none;   
+        }
+    }
+    
+    & input {
+        display: inline-block;
+        min-width: 150px;
+        padding: 0.5em 1em;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px $black;
+        background: $accentColor;
+        color: $white;
+        text-align: center;
+        line-height: 1.6;
+    }
+    
+    
+    &--single {
+        a {
+            min-width: 250px;           
+        }
+    }
+    
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.page-item + .page-item {
+    margin-left: 1em;
+}
+
+.page-item.active .page-link {
+    border-color: $accentColor;
+    background: $accentColor;
+    color: white;
+}
+
+.page-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $txtColor;
+    min-width: 2em;
+    min-height: 2em;
+    padding: 4px;
+    border-radius: 8px;
+    line-height: 1;
+    transition: all 0.5s;
+}
+
+.page-link:hover {
+    border-color: $accentColor;
+    background: $accentColor;
+    color: white;
+}
+
+.currentPages {
+    margin-bottom: 2em;
+}
+

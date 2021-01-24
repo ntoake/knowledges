@@ -236,12 +236,10 @@ template {
 html {
   font-size: 62.5%;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
 }
 
 body {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   line-height: 1.6;
   font-family: "Noto Serif JP",serif;
   font-weight: 400;
@@ -295,7 +293,6 @@ textarea {
 a {
   color: #333;
   text-decoration: none;
-  transition: all .5s;
 }
 
 a:hover {
@@ -319,11 +316,12 @@ a:hover {
 
 .l-main {
   flex: 2;
+  margin: 4em 0;
 }
 
 .l-footer {
   padding: 1em;
-  background: #ddd;
+  background: #eee;
   text-align: center;
 }
 
@@ -349,6 +347,249 @@ a:hover {
   padding: .5em;
   border-radius: 6px;
   background: #fff;
-  font-size: 1.6rem;
+}
+
+.oneColumnContent {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.adminContents {
+  display: flex;
+  justify-content: space-between;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.adminContents__main {
+  flex-basis: 80%;
+  padding: 2%;
+}
+
+.adminContents__side {
+  flex-basis: 16%;
+  padding: 2%;
+  background: #34b5e2;
+  color: #fff;
+}
+
+.adminContents__side a {
+  color: #fff;
+}
+
+.adminSideNav {
+  font-weight: bold;
+}
+
+.adminSideNav__item {
+  padding: 10% 0;
+}
+
+.adminSideNav__item+.adminSideNav__item {
+  border-top: 1px solid #fff;
+}
+
+.adminSideNavLower {
+  margin: 4% 0 0 4%;
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+.sharepostList__item:first-child {
+  border-top: 1px solid #333;
+}
+
+.sharepostList__item a {
+  position: relative;
+  display: block;
+  padding: 1em 8% 1em 1em;
+  border-bottom: 1px solid #333;
+}
+
+.sharepostList__item a::after {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  content: "";
+  display: block;
+  width: .5em;
+  height: .5em;
+  border-top: 1px solid #333;
+  border-right: 1px solid #333;
+  transform: translateY(-50%) rotate(45deg);
+  transition: right .5s;
+}
+
+.sharepostList__item a:hover {
+  background: #faaa20;
+}
+
+.sharepostList__item a:hover::after {
+  position: absolute;
+  top: 50%;
+  right: 3%;
+}
+
+.sharepostList__date {
+  font-size: 1.2rem;
+}
+
+.sharepostList__author {
+  display: inline-block;
+  margin-left: 2em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #34b5e2;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.sharepostList__ttl {
+  margin: .5em 0;
+}
+
+.sharepostTag {
+  display: flex;
+  flex-wrap: wrap;
+  margin: .5em 0;
+}
+
+.sharepostTag__item {
+  margin: .5em 1em 0 0;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #eee;
+  font-size: 1.2rem;
+}
+
+.sharepostUnit__status {
+  display: flex;
+  margin-bottom: 2em;
+}
+
+.sharepostUnit__author {
+  display: inline-block;
+  margin-left: 2em;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #34b5e2;
+  color: #fff;
+}
+
+.sharepostUnit__ttl {
+  font-size: 2rem;
+  padding-bottom: .2em;
+}
+
+.sharepostUnit__content {
+  padding: 2em 0;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+.sharepostUnitTag {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin: .5em 0;
+}
+
+.sharepostUnitTag__item {
+  margin: .5em 1em 0 0;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #eee;
+}
+
+.tagCheckList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tagCheckList__item {
+  margin-right: 1em;
+}
+
+.btnEle {
+  display: flex;
+  justify-content: center;
+  margin-top: 4em;
+}
+
+.btnEle a {
+  display: inline-block;
+  min-width: 150px;
+  padding: .5em 1em;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.7);
+  background: #faaa20;
+  color: #fff;
+  text-align: center;
+}
+
+.btnEle a+a,
+.btnEle a+form {
+  margin-left: 2em;
+}
+
+.btnEle a:hover {
+  text-decoration: none;
+}
+
+.btnEle input {
+  display: inline-block;
+  min-width: 150px;
+  padding: .5em 1em;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.7);
+  background: #faaa20;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.btnEle--single a {
+  min-width: 250px;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.page-item+.page-item {
+  margin-left: 1em;
+}
+
+.page-item.active .page-link {
+  border-color: #faaa20;
+  background: #faaa20;
+  color: #fff;
+}
+
+.page-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #333;
+  min-width: 2em;
+  min-height: 2em;
+  padding: 4px;
+  border-radius: 8px;
+  line-height: 1;
+  transition: all .5s;
+}
+
+.page-link:hover {
+  border-color: #faaa20;
+  background: #faaa20;
+  color: #fff;
+}
+
+.currentPages {
+  margin-bottom: 2em;
 }
 

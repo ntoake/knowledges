@@ -1,6 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
+
+
+<div class="oneColumnContent">
+    @include('admin.commons.error')
 
     {{ Form::open(['route' => 'login.post']) }}
         <div class="">
@@ -13,8 +17,13 @@
             {{ Form::password('password', ['class' => '']) }}
         </div>
 
-        {{ Form::submit('Log in', ['class' => '']) }}
+        <div class="btnEle btnEle--single">
+            {{ Form::submit('ログイン', ['class' => '']) }}
+        </div> 
+        
     {{ Form::close() }}
+</div>
+    
 
 
 @endsection

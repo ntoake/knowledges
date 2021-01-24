@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 
 
-なかみ111
+フロントなかみ111
 
 @endsection

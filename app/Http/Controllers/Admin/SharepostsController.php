@@ -131,7 +131,6 @@ class SharepostsController extends Controller
         $sharepost = Sharepost::with('postHaveTag')->findOrFail($id);
    
         $tags = Tag::all();
-        
 
         // メッセージ編集ビューでそれを表示
         return view('admin.shareposts.edit', [
@@ -159,11 +158,11 @@ class SharepostsController extends Controller
         //$sharepost->fillable($requestAll) ※モデルの$fillableと同じカラムがないといけない
         //$sharepost->save();
         
-        // 記事詳細へ戻す
-        /*return view('admin.shareposts.show', [
-            'sharepost' => $sharepost,
-        ]);*/
-        
+
+        //現状のタグをすべて更新
+        $sharepost->postHaveTag()->sync($request->tagname);
+
+
         return redirect()->route('shareposts.show', $id);
     }
 

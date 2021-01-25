@@ -22,4 +22,10 @@ class Sharepost extends Model
     {
         return $this->belongsToMany(Tag::class, 'sharepost_tags', 'sharepost_id', 'tag_id')->withTimestamps();
     }
+    
+    /*不要（間違い）
+    public function deleteSharepostTag($sharepostId)
+    {
+        $this->postHaveTag()->detach($sharepostId);
+    } */
 }

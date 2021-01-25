@@ -52,11 +52,11 @@ $(function(){
                     <ul class="tagCheckList">
                         @foreach ($tags as $tag)
                             <li class="tagCheckList__item">
-
+                             <?php $tagCheckBoxFlag = false; ?>
                             {{--チェックボックスフラグを確認--}}
                             @foreach ($sharepost->postHaveTag as $posttag)
                                 @if($tag->id == $posttag->id)
-                                <?php $tagCheckBoxFlag = true; ?>
+                                    <?php $tagCheckBoxFlag = true; ?>
                                 @endif
                             @endforeach 
                             {{Form::checkbox('tagname[]', $tag->id, $tagCheckBoxFlag, ['id'=>$tag->tag])}}

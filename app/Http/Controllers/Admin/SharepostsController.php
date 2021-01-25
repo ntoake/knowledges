@@ -135,7 +135,8 @@ class SharepostsController extends Controller
         // メッセージ編集ビューでそれを表示
         return view('admin.shareposts.edit', [
             'sharepost' => $sharepost,
-            'tags' => $tags, 
+            'tags' => $tags,
+            'tagCheckBoxFlag' => false,          
         ]);
     }
 

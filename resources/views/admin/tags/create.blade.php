@@ -23,7 +23,7 @@ $(function(){
 
 @section('content')
 
-
+    @if (Auth::check())   
     <div class="adminContents">
 
         @include('admin.commons.sidebar')
@@ -34,7 +34,7 @@ $(function(){
 
             @include('admin.commons.error')
             
-            @if (Auth::check())    
+ 
       
                 {{ Form::model($tag, ['route' => 'tags.store']) }}
                 
@@ -52,7 +52,7 @@ $(function(){
                 
                 {{ Form::close() }}
         
-            @endif
+
 
 
 
@@ -61,6 +61,7 @@ $(function(){
 
         </div>
     </div>  
+    @endif
     
     
     

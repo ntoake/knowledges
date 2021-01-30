@@ -504,6 +504,7 @@ a:hover {
 .tagCheckList {
   display: flex;
   flex-wrap: wrap;
+  margin: 1em 0;
 }
 
 .tagCheckList__item {
@@ -513,7 +514,7 @@ a:hover {
 .btnEle {
   display: flex;
   justify-content: center;
-  margin-top: 4em;
+  margin-top: 2em;
 }
 
 .btnEle a {
@@ -591,5 +592,57 @@ a:hover {
 
 .currentPages {
   margin-bottom: 2em;
+}
+
+.searchSection {
+  margin-bottom: 4em;
+  padding: 2em;
+  border: 1px solid #333;
+}
+
+.searchSection__ttl {
+  position: relative;
+}
+
+.searchSection__input {
+  display: none;
+}
+
+.searchSection__label {
+  position: relative;
+  display: block;
+  font-size: 2rem;
+}
+
+.searchSection__label::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 1em;
+  height: 1em;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  transform: rotate(45deg);
+  transition: all .5s;
+}
+
+.searchSection__detail {
+  height: 0;
+  opacity: 0;
+  transition: all .3s;
+}
+
+.searchSection__detail>form {
+  padding-top: 1em;
+}
+
+.searchSection__input:checked~.searchSection__detail {
+  height: auto;
+  opacity: 1;
+}
+
+.searchSection__input:checked+.searchSection__label::before {
+  transform: translateY(50%) rotate(-135deg);
 }
 

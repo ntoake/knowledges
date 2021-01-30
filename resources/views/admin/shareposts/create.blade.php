@@ -23,7 +23,7 @@ $(function(){
 
 @section('content')
 
-
+    @if (Auth::check())
     <div class="adminContents">
 
         @include('admin.commons.sidebar')
@@ -34,7 +34,7 @@ $(function(){
 
             @include('admin.commons.error')
             
-            @if (Auth::check())    
+    
       
                 {{ Form::model($sharepost, ['route' => 'shareposts.store']) }}
                 
@@ -65,7 +65,7 @@ $(function(){
                 
                 {{ Form::close() }}
         
-            @endif
+
 
 
 
@@ -74,7 +74,7 @@ $(function(){
 
         </div>
     </div>  
-    
+    @endif  
     
     
     

@@ -45,6 +45,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/shareposts', 'Admin\SharepostsController');
     
     Route::resource('admin/tags', 'Admin\TagsController');
+    
+    Route::get('admin/search', 'Admin\searchController@index')->name('admin.search');
 });
 
 

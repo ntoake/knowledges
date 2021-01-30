@@ -33,8 +33,7 @@ $(function(){
 
             @include('admin.commons.error')
             
-            @if (Auth::check())    
-      
+
                 {{ Form::model($sharepost, ['route' => ['shareposts.update', $sharepost->id], 'method' => 'put']) }}
                 
                 <div>
@@ -43,10 +42,8 @@ $(function(){
                         {{ Form::text('title', old('title'), ['class' => '']) }}
                     </div>
                     <div class="">
-                        
                         {{ Form::label('content', 'コンテンツ') }}
                         {{ Form::textarea('content', old('content'), ['class' => 'js-summernote']) }}       
-                        
                     </div> 
                     
                     <ul class="tagCheckList">
@@ -59,7 +56,7 @@ $(function(){
                                     <?php $tagCheckBoxFlag = true; ?>
                                 @endif
                             @endforeach 
-                            {{Form::checkbox('tagname[]', $tag->id, $tagCheckBoxFlag, ['id'=>$tag->tag])}}
+                            {{ Form::checkbox('tagname[]', $tag->id, $tagCheckBoxFlag, ['id'=>$tag->tag]) }}
                             {{ Form::label($tag->tag, $tag->tag) }}
                             </li>
                             
@@ -75,7 +72,7 @@ $(function(){
                 
                 {{ Form::close() }}
         
-            @endif
+
             
 
             <div class="btnEle btnEle--single">

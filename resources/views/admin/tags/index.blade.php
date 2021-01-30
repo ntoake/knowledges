@@ -3,7 +3,7 @@
 @section('content')
 
 
-
+    @if (Auth::check())
     <div class="adminContents">
 
         @include('admin.commons.sidebar')
@@ -40,7 +40,7 @@
             
         </div>
     </div>  
-    
+    @endif   
     
     
     

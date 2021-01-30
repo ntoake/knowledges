@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 use App\Sharepost;
 use App\Tag;
 
-class frontSharepostsController extends Controller
+class searchController extends Controller
 {
     //
     public function index(Request $request)
     {
-        
         //検索クエリ
         $search_query = $request->search_query;
         //検索タグ
@@ -71,34 +71,17 @@ class frontSharepostsController extends Controller
             //$aaa = 'nothing';
              
         }
-        
-        //タグを取得
-        $tags = Tag::all();
 
         // dd($shareposts->toSql());
 
         // ユーザ詳細ビューでそれを表示
-        return view('front.index', [
+        return view('admin.search.index', [
             'shareposts' => $shareposts, 
-            'tags' => $tags, 
+            
+            //'aaa' => $aaa,            
         ]);
-        //
-        /*$shareposts = Sharepost::with('postHaveTag')->orderBy('id', 'desc')->paginate(10);
-        
-        return view('front.index', [
-            'shareposts' => $shareposts, 
-        ]);*/
     }
     
-    public function show($id)
-    {
-        //
-        // idの値でメッセージを検索して取得
-        $sharepost = Sharepost::with('postHaveTag')->findOrFail($id);
 
-        // メッセージ詳細ビューでそれを表示
-        return view('front.shareposts.show', [
-            'sharepost' => $sharepost,
-        ]);
-    }
+    
 }

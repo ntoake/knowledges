@@ -289,6 +289,7 @@ a:hover {
 .tagCheckList {
     display: flex;
     flex-wrap: wrap;
+    margin: 1em 0;
     
     &__item {
         margin-right: 1em;
@@ -301,7 +302,7 @@ a:hover {
 .btnEle {
     display: flex;
     justify-content: center;
-    margin-top: 4em;
+    margin-top: 2em;
     
 
     a {
@@ -386,3 +387,61 @@ a:hover {
     margin-bottom: 2em;
 }
 
+
+.searchSection {
+    margin-bottom: 4em;
+    padding: 2em;
+    border: 1px solid $txtColor;
+    
+    &__ttl {
+        position: relative;
+        
+        
+
+        
+    }
+    
+    &__input {
+      display: none;
+    }
+    
+    &__label {
+        position: relative;
+        display: block;
+        @include fsz(20);
+        
+        &::before {
+            content: '';
+            @include ab-tr();
+            width: 1em;
+            height: 1em;
+            border-right: 1px solid $txtColor;
+            border-bottom: 1px solid $txtColor;
+            transform: rotate(45deg);
+            transition: all .5s;
+        }
+    }
+    
+    &__detail {
+        height: 0;
+        opacity: 0;
+        transition: all .3s;
+
+        
+        & > form {
+            padding-top: 1em;
+        }
+    }
+    
+    &__input:checked ~ &__detail {
+        height: auto;
+        opacity: 1;
+
+    }
+    
+    &__input:checked + &__label {
+        &::before {
+            transform: translateY(50%) rotate(-135deg);
+        }
+    }
+}    

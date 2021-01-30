@@ -19,7 +19,7 @@
 
             @include('admin.commons.error')
             
-            @if (Auth::check())    
+   
       
                 {{ Form::model($tag, ['route' => ['tags.update', $tag->id], 'method' => 'put']) }}
                 
@@ -37,7 +37,7 @@
                 
                 {{ Form::close() }}
         
-            @endif
+
             
 
             <div class="btnEle btnEle--single">

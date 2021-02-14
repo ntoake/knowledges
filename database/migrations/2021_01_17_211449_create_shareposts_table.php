@@ -20,7 +20,8 @@ class CreateSharepostsTable extends Migration
             $table->text('content');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            //下記だとユーザ削除した時にそのユーザの書いた記事全てが消える。それが嫌なら下記は不要だが、上記カラムのnullをOKにもしないといけない
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -47,6 +47,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('admin/tags', 'Admin\TagsController');
     
     Route::get('admin/search', 'Admin\searchController@index')->name('admin.search');
+    
+    // 画像保存用
+    Route::post('admin/summernote/temp', 'Admin\SummernoteController@image')->name('summernote.image');
+    // 画像削除用
+    Route::post('admin/summernote/remove', 'Admin\SummernoteController@remove')->name('summernote.remove');   
+
 });
 
 

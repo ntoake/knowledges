@@ -8,21 +8,12 @@
 @section('js')
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<script>
-$(function(){
-    $('.js-summernote').summernote({
-        tabsize: 2,
-        height: 300,
-    });
-});
-</script>
+<script src="/js/summernote.js"></script>
 @endsection
 
-
 @section('content')
-
+    
     @if (Auth::check())
     <div class="adminContents">
 
@@ -57,6 +48,17 @@ $(function(){
                             </li>
                         @endforeach
                     </ul>
+                    
+                    <dl>
+                        <dt>画像の削除について</dt>
+                        <dd>
+                            <ul>
+                                <li>削除する際は、画像を選択肢、ゴミ箱ボタンを押して削除してください。<li>
+                                <li>記事更新に関係なく実行されます。<li>
+                            </ul>      
+                        </dd>
+                    </dl>
+
                 </div>   
 
                 <div class="btnEle btnEle--single">

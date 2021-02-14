@@ -125,17 +125,22 @@ a:hover {
 .adminContents {
     display: flex;
     justify-content: space-between;
-    max-width: 80%;
+    overflow: hidden;
+    max-width: 90%;
     margin: 0 auto;
     
     &__main {
         flex-basis: 80%; 
+        max-width: 80%;
         padding: 2%;
+        box-sizing: border-box;
     }
     
     &__side {
         flex-basis: 16%;
+        max-width: 16%;
         padding: 2%;
+        box-sizing: border-box;
         background: $subColor;
         color: $white;
      
@@ -389,8 +394,8 @@ a:hover {
 
 
 .searchSection {
-    margin-bottom: 4em;
-    padding: 2em;
+    margin-bottom: 2em;
+    padding: 1em 2em;
     border: 1px solid $txtColor;
     
     &__ttl {
@@ -445,3 +450,46 @@ a:hover {
         }
     }
 }    
+
+
+.searchConditions {
+    margin: 2em 0;
+    padding: 1em 2em;
+    background: $gray;
+    
+    &__ttl {
+        display: inline-block;
+        margin-bottom: 0.5em;
+        padding: 0.3em 1em;
+        border-radius: 12px/50%;
+        background: $subColor;
+        line-height: 1;
+        font-weight: bold;
+        color: $white;
+    }
+    
+    &__tagWrap {
+        display: flex;
+        flex-wrap: nowrap;
+     
+    }
+    
+    &__tag {
+        flex-basis: 5em;
+        margin-top: .5em;
+        
+    } 
+}
+
+.searchConditionsList {
+    display: flex;
+    flex-wrap: wrap;
+    
+    &__item {
+        margin: .5em 1em 0 0;
+        padding: 2px 8px;
+        border-radius: 10px;
+        background: $white;
+        font-size: 1.2rem;
+    }
+}

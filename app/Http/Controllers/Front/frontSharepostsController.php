@@ -13,18 +13,20 @@ class frontSharepostsController extends Controller
     //
     public function index(Request $request)
     {
-        
+
         //検索クエリ
         $search_query = $request->search_query;
         //検索タグ
         $search_tag = $request->tagname;
         
-        //$aaa = '';
+        //変数設定（検索条件格納）
+        $searchTxt = '';
+        $searchTags = [];  
         
         //dd($search_query);
         
         //dd($search_tag);
-        
+        //本当はクエリの処理はmodelに書いた方がいい
         if($search_query != '' && empty($search_tag)) {
             //テキスト検索のときのみ
             $shareposts = Sharepost::with('postHaveTag')
@@ -32,7 +34,10 @@ class frontSharepostsController extends Controller
             ->orwhere('content', 'LIKE', '%'.$search_query.'%')
             ->orderBy('id', 'desc')
             ->paginate(10);
-            //$aaa = 'text';  
+            
+            //view渡し用の変数にクエリを格納
+            $searchTxt = $search_query; 
+            //$searchTags = []; //不要
         
         } else if ($search_query == null && empty($search_tag) == false){
             
@@ -43,7 +48,18 @@ class frontSharepostsController extends Controller
             })
             ->orderBy('id', 'desc')
             ->paginate(10);
-            //$aaa = 'tag';          
+
+            for($i = 0; $i < count($search_tag); $i++){
+                $targetTag = Tag::findOrFail($search_tag[$i]);
+                $targetTagName = $targetTag->tag;
+                //dd($targetTagName);
+                $searchTagNameList[] = $targetTagName;
+            }
+
+            //view渡し用の変数にクエリを格納
+            //$searchTxt = ''; //不要
+            $searchTags = $searchTagNameList; 
+            
             
         } else if ($search_query != '' &&  empty($search_tag) == false){
             
@@ -62,14 +78,24 @@ class frontSharepostsController extends Controller
             
             //クエリを実行
             $shareposts = $query->paginate(10);
-            //$aaa = 'both';
+
+            //
+            for($i = 0; $i < count($search_tag); $i++){
+                $targetTag = Tag::findOrFail($search_tag[$i]);
+                $targetTagName = $targetTag->tag;
+                //dd($targetTagName);
+                $searchTagNameList[] = $targetTagName;
+            }
+            
+            //view渡し用の変数にクエリを格納
+            $searchTxt = $search_query; 
+            $searchTags = $searchTagNameList; 
             
         } else {
             
             //指定なしで検索
             $shareposts = Sharepost::with('postHaveTag')->orderBy('id', 'desc')->paginate(10);
-            //$aaa = 'nothing';
-             
+
         }
         
         //タグを取得
@@ -81,6 +107,8 @@ class frontSharepostsController extends Controller
         return view('front.index', [
             'shareposts' => $shareposts, 
             'tags' => $tags, 
+            'searchTxt' => $searchTxt, 
+            'searchTags' => $searchTags, 
         ]);
         //
         /*$shareposts = Sharepost::with('postHaveTag')->orderBy('id', 'desc')->paginate(10);

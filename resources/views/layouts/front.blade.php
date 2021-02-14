@@ -7,7 +7,7 @@
         <title>Laravel</title>
 
 
-        <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/assets/css/index.css') }}">
 
 
 

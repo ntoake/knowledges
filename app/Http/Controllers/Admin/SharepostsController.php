@@ -21,7 +21,9 @@ class SharepostsController extends Controller
         //検索タグ
         $search_tag = $request->tagname;
         
-        //$aaa = '';
+        //変数設定（検索条件格納）
+        $searchTxt = '';
+        $searchTags = [];      
         
         //dd($search_query);
         
@@ -34,8 +36,11 @@ class SharepostsController extends Controller
             ->orwhere('content', 'LIKE', '%'.$search_query.'%')
             ->orderBy('id', 'desc')
             ->paginate(10);
-            //$aaa = 'text';  
-        
+            
+            //view渡し用の変数にクエリを格納
+            $searchTxt = $search_query; 
+            //$searchTags = []; //不要
+
         } else if ($search_query == null && empty($search_tag) == false){
             
             //タグの時のみ
@@ -45,12 +50,26 @@ class SharepostsController extends Controller
             })
             ->orderBy('id', 'desc')
             ->paginate(10);
-            //$aaa = 'tag';          
+
+            //dd(count($search_tag));
+            
+            for($i = 0; $i < count($search_tag); $i++){
+                $targetTag = Tag::findOrFail($search_tag[$i]);
+                $targetTagName = $targetTag->tag;
+                //dd($targetTagName);
+                $searchTagNameList[] = $targetTagName;
+            }
+
+            //dd($searchTag);
+
+            //view渡し用の変数にクエリを格納
+            //$searchTxt = ''; //不要
+            $searchTags = $searchTagNameList; 
+            
             
         } else if ($search_query != '' &&  empty($search_tag) == false){
             
             //テキスト検索とタグの両方
-            
             $query = Sharepost::with('postHaveTag')
             ->whereHas('postHaveTag', function ($q) use ($search_tag) {
                 $q->whereIn('tag_id', $search_tag);
@@ -64,21 +83,30 @@ class SharepostsController extends Controller
             
             //クエリを実行
             $shareposts = $query->paginate(10);
-            //$aaa = 'both';
+
+            //
+            for($i = 0; $i < count($search_tag); $i++){
+                $targetTag = Tag::findOrFail($search_tag[$i]);
+                $targetTagName = $targetTag->tag;
+                //dd($targetTagName);
+                $searchTagNameList[] = $targetTagName;
+            }
+            
+            //view渡し用の変数にクエリを格納
+            $searchTxt = $search_query; 
+            $searchTags = $searchTagNameList; 
             
         } else {
             
             //指定なしで検索
             $shareposts = Sharepost::with('postHaveTag')->orderBy('id', 'desc')->paginate(10);
-            //$aaa = 'nothing';
-             
+
         }
         
         // dd($shareposts->toSql());
 
         //$shareposts = Sharepost::with('postHaveTag')->orderBy('id', 'desc')->paginate(10);
         
-
         //dd($shareposts);
         //$tags = Tag::all();
         
@@ -88,6 +116,8 @@ class SharepostsController extends Controller
         return view('admin.index', [
             'shareposts' => $shareposts, 
             'tags' => $tags, 
+            'searchTxt' => $searchTxt, 
+            'searchTags' => $searchTags, 
         ]);
     }
 
@@ -157,20 +187,28 @@ class SharepostsController extends Controller
         $postNum = Sharepost::orderBy('id', 'desc')->first()->id;
         
         //選んだタグの数をカウント（あとでタグテーブルに登録するための繰り返しのカウント）
-        $tagNum = count($request->tagname);       
+        
+        //dd($request->tagname);
+        //タグ指定がない場合を考慮してif分岐させている
+        if($request->tagname != null) {
+            $tagNum = count($request->tagname);
+            
+            //sharepost_tagsの中間テーブルに保存
+            $sharepostTag = new SharepostTag;
+            
+            //選んだタグ分繰り返して保存する
+            for ($i = 0; $i < $tagNum; $i++) {
+                $sharepostTag->create([
+                    'sharepost_id' => $postNum,
+                    'tag_id' => $requestAll['tagname'][$i],              
+                ]);
+            } 
+            
+            
+        }
         //dd($tagNum);
         
-        //sharepost_tagsの中間テーブルに保存
-        $sharepostTag = new SharepostTag;
-        
-        //選んだタグ分繰り返して保存する
-        for ($i = 0; $i < $tagNum; $i++) {
-            $sharepostTag->create([
-                'sharepost_id' => $postNum,
-                'tag_id' => $requestAll['tagname'][$i],              
-            ]);
-        } 
-        
+
         return redirect()->route('admin');
 
     }
